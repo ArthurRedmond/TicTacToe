@@ -56,12 +56,12 @@ public class Main {
                         Arrays.equals(gameplay[2], winHorizontalY))) {
             return "Impossible";
             // Checks to see if the game is possible if there are two "winners" vertical
-        } else if ((gameplay[0][0] == 'X' && gameplay[1][0] == 'X' && gameplay[2][0] == 'X') ||
+        } else if (((gameplay[0][0] == 'X' && gameplay[1][0] == 'X' && gameplay[2][0] == 'X') ||
                 (gameplay[0][1] == 'X' && gameplay[1][1] == 'X' && gameplay[2][1] == 'X') ||
-                (gameplay[0][2] == 'X' && gameplay[1][2] == 'X' && gameplay[2][2] == 'X') &&
-                (gameplay[0][0] == 'O' && gameplay[1][0] == 'O' && gameplay[2][0] == 'O') ||
+                (gameplay[0][2] == 'X' && gameplay[1][2] == 'X' && gameplay[2][2] == 'X')) &&
+                ((gameplay[0][0] == 'O' && gameplay[1][0] == 'O' && gameplay[2][0] == 'O') ||
                 (gameplay[0][1] == 'O' && gameplay[1][1] == 'O' && gameplay[2][1] == 'O') ||
-                (gameplay[0][2] == 'O' && gameplay[1][2] == 'O' && gameplay[2][2] == 'O')) {
+                (gameplay[0][2] == 'O' && gameplay[1][2] == 'O' && gameplay[2][2] == 'O'))) {
             return "Impossible";
             // If X is in all three spaces horizontal
         } else if (Arrays.equals(gameplay[0], winHorizontalX) ||
@@ -83,6 +83,14 @@ public class Main {
                 (gameplay[0][1] == 'O' && gameplay[1][1] == 'O' && gameplay[2][1] == 'O') ||
                 (gameplay[0][2] == 'O' && gameplay[1][2] == 'O' && gameplay[2][2] == 'O')) {
             return "O wins";
+            // If X is in diagonal positions
+        } else if ((gameplay[0][0] == 'X' && gameplay[1][1] == 'X' && gameplay[2][2] == 'X') ||
+                (gameplay[0][2] == 'X' && gameplay[1][1] == 'X' && gameplay[2][0] == 'X')) {
+            return  "X wins";
+            // If O is in diagonal positions
+        } else if ((gameplay[0][0] == 'O' && gameplay[1][1] == 'O' && gameplay[2][2] == 'O') ||
+                (gameplay[0][2] == 'O' && gameplay[1][1] == 'O' && gameplay[2][0] == 'O')) {
+            return  "X wins";
             // If above has not caught, are there still moves?
         } else if (containsSpaces(gameplay)) {
             return "Game not finished";
