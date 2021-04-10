@@ -4,20 +4,45 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
+        char[][] gameplay = startGame();
+
+        printGame(gameplay);
+        playerX(gameplay);
+        printGame(gameplay);
+        //        System.out.println(result(inputArray));
+
+    }
+
+    public static char[][] startGame() {
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter cells: ");
         String input = scanner.nextLine().toUpperCase();
-
         char[][] inputArray = new char[3][3];
-
         inputArray[0] = input.substring(0, 3).toCharArray();
         inputArray[1] = input.substring(3, 6).toCharArray();
         inputArray[2] = input.substring(6, 9).toCharArray();
+        return inputArray;
+    }
+
+    public static void playerX(char[][] gameplay) {
+        Scanner scanner = new Scanner(System.in);
+        int row = -1;
+        int column = -1;
 
 
-        printGame(inputArray);
-        System.out.println(result(inputArray));
+        while (true) {
+            System.out.print("Enter the coordinates: ");
+            row = scanner.nextInt();
+            column = scanner.nextInt();
+
+            if (gameplay[row - 1][column - 1] != ' ' && gameplay[row - 1][column - 1] != '_') {
+                System.out.println("This cell is occupied! Choose another one!");
+                continue;
+            }
+            break;
+        }
+        gameplay[row - 1][column - 1] = 'X';
     }
 
     public static void printGame(char[][] gameplay) {
