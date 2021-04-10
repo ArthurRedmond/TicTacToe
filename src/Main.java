@@ -30,13 +30,23 @@ public class Main {
         int row = -1;
         int column = -1;
 
-
         while (true) {
             System.out.print("Enter the coordinates: ");
-            row = scanner.nextInt();
-            column = scanner.nextInt();
+            String rowString = scanner.next();
+            String columnString = scanner.next();
+            scanner.nextLine();
 
-            if (gameplay[row - 1][column - 1] != ' ' && gameplay[row - 1][column - 1] != '_') {
+            // Validate entries are base 10 digits
+            row = Character.digit(rowString.charAt(0),10);
+            column = Character.digit(columnString.charAt(0), 10);
+
+            if (row == -1 || column == -1) {
+                System.out.println("You should enter numbers!");
+                continue;
+            } else if (row < 1 || row > 3 || column < 1 || column > 3) {
+                System.out.println("Coordinates should be from 1 to 3!");
+                continue;
+            } else if (gameplay[row - 1][column - 1] != ' ' && gameplay[row - 1][column - 1] != '_') {
                 System.out.println("This cell is occupied! Choose another one!");
                 continue;
             }
