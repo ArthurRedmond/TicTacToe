@@ -35,7 +35,7 @@ public class Main {
     }
 
     public static String result(char[][] gameplay) {
-        String output = "";
+        String output = "Draw";
 
         int xCount = xCount(gameplay);
         int oCount = oCount(gameplay);
@@ -75,6 +75,8 @@ public class Main {
                 (gameplay[0][1] == 'O' && gameplay[1][1] == 'O' && gameplay[2][1] == 'O') ||
                 (gameplay[0][2] == 'O' && gameplay[1][2] == 'O' && gameplay[2][2] == 'O')) {
             return "O wins";
+        } else if (containsSpaces(gameplay)) {
+            return "Game not finished";
         }
         return output;
     }
@@ -107,4 +109,17 @@ public class Main {
         return count;
     }
 
+    public static boolean containsSpaces(char[][] gameplay) {
+        boolean output = false;
+        for (char[] characterArray : gameplay
+        ) {
+            for (char character : characterArray
+            ) {
+                if (character == ' ' || character == '_') {
+                    output = true;
+                }
+            }
+        }
+        return output;
+    }
 }
